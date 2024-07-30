@@ -1,5 +1,6 @@
 import {
   calculateComplexity,
+  OtherStringUtils,
   toUpperCaseWithCb,
 } from "../../app/doubles/OtherUtils";
 
@@ -37,6 +38,36 @@ describe("OtherUtils test suite", () => {
       expect(actual).toBe("ABC");
       expect(cb).toHaveBeenCalledWith(`Called function with argument: ${arg}`);
       expect(cb).toBeCalledTimes(1);
+    });
+  });
+
+  describe("OtherStringUtils test suite", () => {
+    let sut: OtherStringUtils;
+
+    beforeEach(() => {
+      sut = new OtherStringUtils();
+    });
+
+    it("should log string", () => {
+      const spy = jest.spyOn(console, "log");
+      const arg = "test";
+      sut.logString(arg);
+      expect(spy).toHaveBeenCalledWith(arg);
+    });
+
+    it("should execute external service", () => {
+      const arg = "test";
+      jest.spyOn(sut, "executeExternalService").mockImplementation(() => {
+        console.log("Executing: " + arg);
+      });
+      sut.executeExternalService(arg);
+    });
+
+    it("should convert string to uppercase", () => {
+      const spy = jest.spyOn(sut, "toUpperCase");
+      const arg = "abc";
+      sut.toUpperCase(arg);
+      expect(spy).toHaveBeenCalledWith(arg);
     });
   });
 });
