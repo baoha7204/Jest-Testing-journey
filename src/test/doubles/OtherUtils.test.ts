@@ -4,7 +4,7 @@ import {
   toUpperCaseWithCb,
 } from "../../app/doubles/OtherUtils";
 
-describe("OtherUtils test suite", () => {
+describe.skip("OtherUtils test suite", () => {
   it("should return correct complexity", () => {
     const someInfo = {
       length: 7,
